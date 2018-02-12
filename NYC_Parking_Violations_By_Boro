@@ -1,0 +1,14 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sea
+
+
+# data_url = 
+
+data_set = pd.read_json('https://data.cityofnewyork.us/resource/uvbq-3m68.json')
+
+print(data_set.head())
+
+counter = sea.countplot(x = 'county', data = data_set)
+plt.show(counter)
