@@ -1,0 +1,46 @@
+import urllib
+from bs4 import BeautifulSoup as bs
+import pandas as pd
+
+# Set URL and read
+antigua_page = urllib.urlopen('http://www.sandals.com/main/antigua/an-accommodations/').read()
+
+# Assign to BeautifulSoup object
+antigua_soup = bs(antigua_page)
+
+# Print prettyfied web page to test
+# print(antigua_soup.prettify().encode('utf-8'))
+
+# Verify the beautiful soup objects
+# print(list(antigua_soup.children))
+
+prices = antigua_soup.find_all('p', class_ = 'now-price')
+cat = antigua_soup.find_all('div', class_='accInfo')
+
+# Verify scraped data
+# print(prices)
+# print(cat)
+
+room_price = []
+for price in prices:
+    room_price.append([price.strong.get_text()] )
+    # return room_price
+
+# Validate data list for room_price
+# print(room_price)
+
+room_name = []
+for name in cat:
+    room_name.append([name.h3.get_text()])
+
+# Validate data list for room_name
+# print(room_name)
+
+# Combine lists into DataFrame
+room_and_price = pd.DataFrame({
+    'Room_Name': room_name,
+    'Room_Price': room_price})
+
+# Print DataFraome room_and_price
+print(room_and_price)
+
