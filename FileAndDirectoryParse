@@ -1,5 +1,5 @@
 import os
-test_path = str('C:\BegASPNET')
+test_path = str('C:\File\Path\Here')
 
 def dir_contents(path):
     for child in os.listdir(path):
@@ -10,3 +10,4 @@ def dir_contents(path):
             print(child_path)
 
 dir_contents(test_path)
+
