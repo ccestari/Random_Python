@@ -1,0 +1,12 @@
+import os
+test_path = str('C:\BegASPNET')
+
+def dir_contents(path):
+    for child in os.listdir(path):
+        child_path = os.path.join(path, child)
+        if os.path.isdir(child_path):
+            dir_contents(child_path)
+        else:
+            print(child_path)
+
+dir_contents(test_path)
